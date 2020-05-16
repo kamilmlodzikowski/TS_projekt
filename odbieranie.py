@@ -1,8 +1,4 @@
 from statemachine import StateMachine, State, Transition
-import generator
-
-from statemachine import StateMachine, State, Transition
-import generator
 
 options = [{"name": "IDLE", "initial": True, "value":"idle"}, #0
     {"name": "otwarcie_paczkomatu", "initial": False, "value":"otwarcie"}, #1
@@ -36,7 +32,3 @@ for indices in form_to:
 
         # add transition to source state
         master_states[from_idx].transitions.append(transition)
-
-
-
-
