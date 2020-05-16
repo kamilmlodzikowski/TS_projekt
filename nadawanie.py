@@ -4,8 +4,8 @@ import generator
 options = [{"name": "IDLE", "initial": True, "value":"idle"}, #0
     {"name": "otwarcie_paczkomatu", "initial": False, "value":"otwarcie"}, #1
     {"name": "Podjazd", "initial": False, "value":"podjazd"}, #2
-    {"name": "wyciagniecie_paczki", "initial": False, "value":"wyciagniecie"}, #3
-    {"name": "odlozenie_paczki", "initial": False, "value":"odlozenie"}, #4
+    {"name": "przejecie_paczki", "initial": False, "value":"przejecie"}, #3
+    {"name": "wlozenie_paczki", "initial": False, "value":"wlozenie"}, #4
     {"name": "Blad", "initial": False, "value":"blad"}, #5
     {"name": "zamkniecie_paczkomatu", "initial": True, "value":"zamkniecie"}] #6
 
