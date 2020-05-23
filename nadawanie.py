@@ -1,5 +1,7 @@
 from statemachine import StateMachine, State, Transition
 import generator
+import networkx as nx
+import matplotlib.pyplot as plt
 
 options = [{"name": "IDLE", "initial": True, "value":"idle"}, #0
     {"name": "otwarcie_paczkomatu", "initial": False, "value":"otwarcie"}, #1
@@ -11,6 +13,8 @@ options = [{"name": "IDLE", "initial": True, "value":"idle"}, #0
 
 master_states = [State(**opt) for opt in options]
 
+Graf = nx.Graph()
+
 form_to = [
     [0, [1]],
     [1,[1,2]],
@@ -20,6 +24,11 @@ form_to = [
     [5,[6]],
     [6,[0]]
 ]
+
+Graf.add_edges_from([(0, 1), (1, 1), (1, 2), (2, 3), (2, 5), (3, 4), (4, 6), (5, 6), (6, 0)])
+nx.draw(Graf, with_labels=True)
+plt.draw()
+plt.show()
 
 master_transitions = {}
 for indices in form_to:
