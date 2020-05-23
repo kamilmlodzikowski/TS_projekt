@@ -44,6 +44,7 @@ path_2 = ["m_0_1", "m_1_2", "m_2_5", "m_5_6", "m_6_0"]
 path_3 = ["m_0_1", "m_1_1", "m_1_1", "m_1_2", "m_2_3", "m_3_4", "m_4_6", "m_6_0"]
 paths = [path_1, path_2, path_3]
 
+plt.title('Odbieranie')
 nx.draw(G, with_labels=True)
 plt.draw()
 plt.show()
