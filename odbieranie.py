@@ -1,4 +1,9 @@
 from statemachine import StateMachine, State, Transition
+import generator
+import networkx as nx
+import matplotlib.pyplot as plt
+
+G=nx.Graph()
 
 options = [{"name": "IDLE", "initial": True, "value":"idle"}, #0
     {"name": "otwarcie_paczkomatu", "initial": False, "value":"otwarcie"}, #1
@@ -19,6 +24,7 @@ form_to = [
     [5,[6]],
     [6,[0]]
 ]
+G.add_edges_from([(0,1),(1,1),(1,2),(2,3),(2,5),(3,4),(4,6),(5,6),(6,0)])
 
 master_transitions = {}
 for indices in form_to:
@@ -37,3 +43,7 @@ path_1 = ["m_0_1", "m_1_2", "m_2_3", "m_3_4", "m_4_6", "m_6_0"]
 path_2 = ["m_0_1", "m_1_2", "m_2_5", "m_5_6", "m_6_0"]
 path_3 = ["m_0_1", "m_1_1", "m_1_1", "m_1_2", "m_2_3", "m_3_4", "m_4_6", "m_6_0"]
 paths = [path_1, path_2, path_3]
+
+nx.draw(G, with_labels=True)
+plt.draw()
+plt.show()
