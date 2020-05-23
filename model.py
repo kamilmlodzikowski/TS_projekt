@@ -2,6 +2,8 @@ from statemachine import StateMachine, State, Transition
 
 from generator import Generator
 import supervisor as sup
+import nadawanie as nad
+import odbieranie as odb
 
 
 # create paths from transitions (exemplary)
@@ -26,12 +28,34 @@ for path in sup_paths:
         print(supervisor.current_state)
 
         # add slave
+        #NADAWANIE
         if supervisor.current_state.value == "nadawanie":
-            # TODO: automata 1 (for) slave1
-            ...
+            
+            for nad_path in nad.sup_paths:
+
+                # create a supervisor
+                nadaw = Generator.create_master(nad.master_states, nad.master_transitions)
+                print('\n' + str(nadaw))
+
+                # run supervisor for exemplary path
+                print("Executing path: {}".format(path))
+                for nad_event in nad_path:
+                    # launch a transition in our supervisor
+                    nad.master_transitions[nad_event]._run(nadaw)
+                    print(nadaw.current_state)
             print("Nadawanie zakonczone!")
 
         if supervisor.current_state.value == "odbieranie":
-            # TODO: automata 2 (for) slave2
-            ...
+            for odb_path in odb.paths:
+
+                # create a supervisor
+                odbie = Generator.create_master(odb.master_states, odb.master_transitions)
+                print('\n' + str(odbie))
+
+                # run supervisor for exemplary path
+                print("Executing path: {}".format(path))
+                for odb_event in odb_path:
+                    # launch a transition in our supervisor
+                    odb.master_transitions[odb_event]._run(odbie)
+                    print(odbie.current_state)
             print("Odbieranie zakonczone!")
