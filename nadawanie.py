@@ -36,9 +36,9 @@ for indices in form_to:
 
 sup_path_1 = ["m_0_1", "m_1_1", "m_1_2", "m_2_3", "m_3_4", "m_4_6", "m_6_0"]
 sup_path_2 = ["m_0_1", "m_1_2", "m_2_3", "m_3_4", "m_4_6", "m_6_0"]
-#sup_path_3 = ["m_0_1", "m_1_1", "m_1_2", "m_2_5", "m_5_6", "m_6_0"]
-#sup_path_4 = ["m_0_1", "m_1_2", "m_2_5", "m_5_6", "m_6_0"]
-sup_paths = [sup_path_1, sup_path_2]#, sup_path_3] #, sup_path_4]
+sup_path_3 = ["m_0_1", "m_1_1", "m_1_2", "m_2_5", "m_5_6", "m_6_0"]
+sup_path_4 = ["m_0_1", "m_1_2", "m_2_5", "m_5_6", "m_6_0"]
+sup_paths = [sup_path_1, sup_path_2 , sup_path_3 , sup_path_4]
 
 
 
