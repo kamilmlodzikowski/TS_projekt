@@ -12,24 +12,32 @@ def robot_positions(testRun=False):
 
     # Poniżej znajduje się lista dostępnych dla robota pozycji.
 
-    rot1 = rpy2r([0, 0, 0], unit='deg')
-    tran1 = [0.0, 0.0, 0.0]
-    idle = pose.SE3(tran1[0], tran1[1], tran1[2], rot1)  # Pozycja w stanie spoczynku
+    rot = rpy2r([0, 0, 0], unit='deg')
+    tran = [0.0, 0.5, 0.5]
+    idle = pose.SE3(tran[0], tran[1], tran[2], rot)  # Pozycja w stanie spoczynku
 
-    rot2 = rpy2r([0, 0, 0], unit='deg')
-    tran2 = [-0.5, 1.5, 0.5]
-    pos1 = pose.SE3(tran2[0], tran2[1], tran2[2], rot2)
+    rot = rpy2r([0, 0, 0], unit='deg')
+    tran = [0.2, 0.0, 0.5]
+    pos1 = pose.SE3(tran[0], tran[1], tran[2], rot)  # Chwytak przed paczkomatem
 
-    rot3 = rpy2r([0, 0, 0], unit='deg')
-    tran3 = [-0.5, 1.0, 0.5]
-    pos3 = pose.SE3(tran3[0], tran3[1], tran3[2], rot3)
+    rot = rpy2r([0, 0, 0], unit='deg')
+    tran = [0.2, 0.0, 1.2]
+    pos2 = pose.SE3(tran[0], tran[1], tran[2], rot)  # Chwytak w paczkomacie
+
+    rot = rpy2r([0, 0, 0], unit='deg')
+    tran = [-0.2, 0.0, 0.5]
+    pos3 = pose.SE3(tran[0], tran[1], tran[2], rot)  # Chwytak przed punktem odbioru/nadawania
+
+    rot = rpy2r([0, 0, 0], unit='deg')
+    tran = [-0.2, 0.0, 1.2]
+    pos4 = pose.SE3(tran[0], tran[1], tran[2], rot)  # Chwytak w punkcie odbioru/nadawania
 
     # TODO: Więcej pozycji robota
 
     if testRun:
-        testPath = move_lin(testRobot, pos1, pos3) # move_j nie chce współpracować, move_lin powinien wystarczyć. Dla robota pracującego przy paczkomacie nieprzewidziane ruchy i tak nie są wskazane.
+        testPath = move_lin(testRobot, idle, pos1) # move_j nie chce współpracować, move_lin powinien wystarczyć. Dla robota pracującego przy paczkomacie nieprzewidziane ruchy i tak nie są wskazane.
 
-        testRobot.animate(testPath, frame_rate=30, unit='deg')
+        testRobot.animate(testPath, frame_rate=25, unit='deg')
 
 if __name__ == '__main__':
     # Uruchomienie poses.py jako skrypt główny spowoduje uruchomienie testowej animacji robota
