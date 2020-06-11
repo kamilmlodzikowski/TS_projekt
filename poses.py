@@ -32,8 +32,6 @@ def robot_positions(testRun=False):
     tran = [-0.2, 0.0, 1.2]
     pos4 = pose.SE3(tran[0], tran[1], tran[2], rot)  # Chwytak w punkcie odbioru/nadawania
 
-    # TODO: Więcej pozycji robota
-
     if testRun:
         testPath = move_lin(testRobot, idle, pos1) # move_j nie chce współpracować, move_lin powinien wystarczyć. Dla robota pracującego przy paczkomacie nieprzewidziane ruchy i tak nie są wskazane.
 
