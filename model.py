@@ -4,6 +4,8 @@ from generator import Generator
 import supervisor as sup
 import nadawanie as nad
 import odbieranie as odb
+import poses
+
 
 
 # create paths from transitions (exemplary)
@@ -11,6 +13,8 @@ sup_path_1 = ["m_0_1", "m_1_0", "m_0_2", "m_2_0"]
 sup_path_2 = ["m_0_2", "m_2_0", "m_0_2", "m_2_0"]
 sup_path_3 = ["m_0_1", "m_1_0", "m_0_1", "m_1_0"]
 sup_paths = [sup_path_1, sup_path_2, sup_path_3]
+
+
 
 # execute paths
 for path in sup_paths:
@@ -21,6 +25,9 @@ for path in sup_paths:
 
     # run supervisor for exemplary path
     print("Executing path: {}".format(path))
+
+
+
     for event in path:
 
         # launch a transition in our supervisor
@@ -30,7 +37,7 @@ for path in sup_paths:
         # add slave
         #NADAWANIE
         if supervisor.current_state.value == "nadawanie":
-            
+            ind = 0
             for nad_path in nad.sup_paths:
 
                 # create a supervisor
@@ -43,6 +50,9 @@ for path in sup_paths:
                     # launch a transition in our supervisor
                     nad.master_transitions[nad_event]._run(nadaw)
                     print(nadaw.current_state)
+
+            poses.testRobot.animate(poses.Path_odb, frame_rate=25, unit='deg')
+
             print("Nadawanie zakonczone!")
 
         if supervisor.current_state.value == "odbieranie":
@@ -58,4 +68,8 @@ for path in sup_paths:
                     # launch a transition in our supervisor
                     odb.master_transitions[odb_event]._run(odbie)
                     print(odbie.current_state)
+                    
+            poses.testRobot.animate(poses.Path_nad, frame_rate=25, unit='deg')
+
             print("Odbieranie zakonczone!")
+
