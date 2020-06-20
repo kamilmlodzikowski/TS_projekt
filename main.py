@@ -1,12 +1,6 @@
-from statemachine import StateMachine, State, Transition
-
-from generator import Generator
-import supervisor as sup
-import nadawanie as nad
-import odbieranie as odb
-import poses
-
-
+from automat.generator import Generator
+from automat import nadawanie as nad, odbieranie as odb, supervisor as sup
+from animation import poses
 
 # create paths from transitions (exemplary)
 sup_path_1 = ["m_0_1", "m_1_0", "m_0_2", "m_2_0"]
@@ -51,7 +45,9 @@ for path in sup_paths:
                     nad.master_transitions[nad_event]._run(nadaw)
                     print(nadaw.current_state)
 
-            poses.testRobot.animate(poses.Path_odb, frame_rate=25, unit='deg')
+            poses.odb_animate()
+            # poses.testRobot.animate(poses.Path_odb, frame_rate=10, unit='deg')
+
 
             print("Nadawanie zakonczone!")
 
@@ -69,7 +65,8 @@ for path in sup_paths:
                     odb.master_transitions[odb_event]._run(odbie)
                     print(odbie.current_state)
                     
-            poses.testRobot.animate(poses.Path_nad, frame_rate=25, unit='deg')
+            poses.nad_animate()
+            # poses.testRobot.animate(poses.Path_nad, frame_rate=10, unit='deg')
 
             print("Odbieranie zakonczone!")
 

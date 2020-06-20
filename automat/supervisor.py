@@ -1,5 +1,4 @@
-from statemachine import StateMachine, State, Transition
-import generator
+from statemachine import State, Transition
 import networkx as nx
 import matplotlib.pyplot as plt
 
