@@ -1,6 +1,7 @@
 from statemachine import State, Transition
 import networkx as nx
 import matplotlib.pyplot as plt
+from automat.transitions import transitions
 
 G=nx.Graph()
 
@@ -25,18 +26,7 @@ form_to = [
 ]
 G.add_edges_from([(0,1),(1,1),(1,2),(2,3),(2,5),(3,4),(4,6),(5,6),(6,0)])
 
-master_transitions = {}
-for indices in form_to:
-    from_idx, to_idx_tuple = indices  # unpack list of two elements into separate from_idx and to_idx_tuple
-    for to_idx in to_idx_tuple:  # iterate over destinations from a source state
-        op_identifier = "m_{}_{}".format(from_idx, to_idx)  # parametrize identifier of a transition
-
-        # create transition object and add it to the master_transitions dict
-        transition = Transition(master_states[from_idx], master_states[to_idx], identifier=op_identifier)
-        master_transitions[op_identifier] = transition
-
-        # add transition to source state
-        master_states[from_idx].transitions.append(transition)
+master_transitions = transitions(master_states, form_to)
 
 path_1 = ["m_0_1", "m_1_2", "m_2_3", "m_3_4", "m_4_6", "m_6_0"]
 path_2 = ["m_0_1", "m_1_2", "m_2_5", "m_5_6", "m_6_0"]
